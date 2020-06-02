@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-egghead-blog",
-  "description": "This is a starter for egghead content creator blogs",
+  "name": "youssef-lghoumaigui",
+  "description": "Youssef Lghoumaigui's blog",
   "version": "1.0.0",
-  "author": "egghead.io <support@egghead.io> (https://egghead.io)",
-  "repository": "https://github.com/eggheadio/gatsby-starter-egghead-blog",
+  "author": "youssef lghoumaigui <yousseflghoumaigui@gmail.com> (https://lghou.com)",
+  "repository": "https://github.com/ysflghou/lghou.com",
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.5",
     "@emotion/core": "^10.0.22",

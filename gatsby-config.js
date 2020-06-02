@@ -18,9 +18,8 @@ module.exports = {
     author: {
       name: config.author,
       minibio: `
-        <strong>egghead</strong> is the premier place on the internet for 
-        experienced developers to enhance their skills and stay current
-        in the fast-faced field of web development.
+        <strong>${config.author}</strong> a software engineer who lives and works in
+        Casablanca/Morocco building useful things.
       `,
     },
     organization: {

@@ -1,40 +1,33 @@
-# egghead.io creator MDX Blog Starter Project
+# This is my personal website 🤗
 
-This is based on Robin Wieruch's https://github.com/rwieruch/gatsby-mdx-blog-starter-project
+## 🚀 Quick start
 
-Lots of nice pieces are also borrowed from Jason Lengstorf https://github.com/jlengstorf/lengstorf.com
+1.  **Create a Gatsby site.**
 
-A starter project in [Gatsby.js](https://www.gatsbyjs.org/) with [MDX](https://github.com/mdx-js/mdx).
+    Use the Gatsby CLI to create a new site, specifying the my website as starter.
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/eggheadio/gatsby-starter-egghead-blog)
+    ```sh
+    # create a new Gatsby site using my website
+    gatsby new my-blog-name https://github.com/ysflghou/lghou.com
+    ```
 
-## Features
+1.  **Start developing.**
 
-- MDX: JavaScript/React in Markdown
-- Prism.js: Syntax Highlighting
-- Pagination
-- Emotion
-- Typography.js
-- Self-hosted fonts ([Inter UI](https://rsms.me/inter/))
-- Social media share buttons
-- Site & Theme config files
-- ConvertKit subscribe form (Formik and Yup)
-- Placeholder illustrations by [Katerina Limpitsouni](https://twitter.com/ninalimpi) from [undraw.co](https://undraw.co/)
+    Navigate into your new site’s directory and start it up.
 
-## [➞ Demo](https://egghead-gatsby-starter.netlify.com/)
+    ```sh
+    cd my-blog-name/
+    gatsby develop
+    ```
 
-## Setup
+1.  **Open the source code and start editing!**
 
-- `git clone git@github.com:eggheadio/gatsby-starter-egghead-blog.git`
-- `cd gatsby-starter-egghead-blog`
-- `yarn`
-- `gatsby develop`
-- visit http://localhost:8000
+    Your site is now running at `http://localhost:8000`!
 
-## Setup via Gatsby CLI
+    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
-- `gatsby new gatsby-starter-egghead-blog git@github.com:eggheadio/gatsby-starter-egghead-blog.git`
-- `cd gatsby-starter-egghead-blog`
-- `yarn`
-- `gatsby develop`
-- visit http://localhost:8000
+    Open the `my-blog-name` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+
+    ## Credits
+
+    This website is based on [this gatsby blog starter](https://github.com/eggheadio/gatsby-starter-egghead-blog)
