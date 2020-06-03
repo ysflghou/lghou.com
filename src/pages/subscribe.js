@@ -5,7 +5,7 @@ import Container from '../components/Container'
 import Subscribe from '../components/Forms/Subscribe'
 
 export default ({ data: { site } }) => (
-  <Layout site={site} noFooter>
+  <Layout site={site} noSubscribeForm>
     <Container>
       <Subscribe />
     </Container>
