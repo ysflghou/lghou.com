@@ -8,7 +8,7 @@ import Hero from 'components/Hero'
 
 export default ({ data: { site } }) => {
   return (
-    <Layout site={site}>
+    <Layout site={site} noSubscribeForm>
       <Hero />
       <Container
         css={css`
