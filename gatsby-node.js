@@ -1,5 +1,5 @@
 const path = require('path')
-
+const Constants = require('./src/lib/constants')
 const _ = require('lodash')
 const PAGINATION_OFFSET = 7
 
@@ -7,7 +7,7 @@ const createPosts = (createPage, createRedirect, edges) => {
   edges.forEach(({ node }, i) => {
     const prev = i === 0 ? null : edges[i - 1].node
     const next = i === edges.length - 1 ? null : edges[i + 1].node
-    const pagePath = node.fields.slug
+    const pagePath = `blog/${node.fields.slug}`
 
     if (node.fields.redirects) {
       node.fields.redirects.forEach(fromPath => {
@@ -29,6 +29,33 @@ const createPosts = (createPage, createRedirect, edges) => {
         next,
       },
     })
+  })
+}
+
+const createAboutPage = (createPage, createRedirect, edges) => {
+  if (edges.length !== 1) {
+    return Promise.reject('About page creation badly handled !')
+  }
+  const { node } = edges[0]
+  const aboutPagePath = node.fields.slug
+
+  if (node.fields.redirects) {
+    node.fields.redirects.forEach(fromPath => {
+      createRedirect({
+        fromPath,
+        toPath: aboutPagePath,
+        redirectInBrowser: true,
+        isPermanent: true,
+      })
+    })
+  }
+
+  createPage({
+    path: aboutPagePath,
+    component: path.resolve(`./src/templates/about.js`),
+    context: {
+      id: node.id,
+    },
   })
 }
 
@@ -66,13 +93,20 @@ exports.createPages = ({ actions, graphql }) =>
     if (_.isEmpty(data.allMdx)) {
       return Promise.reject('There are no posts!')
     }
-
-    const { edges } = data.allMdx
+    const blogEdges = data.allMdx.edges.filter(
+      edge => edge.node.parent.sourceInstanceName === Constants.BLOG,
+    )
     const { createRedirect, createPage } = actions
-    createPosts(createPage, createRedirect, edges)
-    createPaginatedPages(actions.createPage, edges, '/blog', {
+    createPosts(createPage, createRedirect, blogEdges)
+    createPaginatedPages(actions.createPage, blogEdges, '/blog', {
       categories: [],
     })
+    const aboutPageEdges = data.allMdx.edges.filter(
+      edge =>
+        edge.node.parent.sourceInstanceName === Constants.PAGES &&
+        edge.node.parent.name === 'about',
+    )
+    createAboutPage(createPage, createRedirect, aboutPageEdges)
   })
 
 exports.onCreateWebpackConfig = ({ actions }) => {

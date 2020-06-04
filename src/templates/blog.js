@@ -7,6 +7,7 @@ import SEO from '../components/SEO'
 import Layout from '../components/Layout'
 import Link from '../components/Link'
 import { bpMaxSM, bpMaxMD } from '../lib/breakpoints'
+import Constants from '../lib/constants'
 
 const Blog = ({
   data: { site, allMdx },
@@ -14,8 +15,11 @@ const Blog = ({
 }) => {
   const { page, nextPagePath, previousPagePath } = pagination
 
+  const postsEdges = allMdx.edges.filter(
+    edge => edge.node.parent.sourceInstanceName === Constants.BLOG,
+  )
   const posts = page
-    .map(id => allMdx.edges.find(edge => edge.node.id === id))
+    .map(id => postsEdges.find(edge => edge.node.id === id))
     .filter(post => post !== undefined)
 
   return (
@@ -75,7 +79,7 @@ const Blog = ({
             >
               <Link
                 aria-label={`View ${post.frontmatter.title} article`}
-                to={`/${post.fields.slug}`}
+                to={`blog/${post.fields.slug}`}
               >
                 {post.frontmatter.title}
               </Link>
@@ -89,7 +93,7 @@ const Blog = ({
               {post.excerpt}
             </p>{' '}
             <Link
-              to={`/${post.fields.slug}`}
+              to={`blog/${post.fields.slug}`}
               aria-label={`view "${post.frontmatter.title}" article`}
             >
               Read Article →
@@ -133,6 +137,12 @@ export const pageQuery = graphql`
         node {
           excerpt(pruneLength: 300)
           id
+          parent {
+            ... on File {
+              name
+              sourceInstanceName
+            }
+          }
           fields {
             title
             slug

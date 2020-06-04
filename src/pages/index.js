@@ -8,6 +8,7 @@ import { useTheme } from 'components/Theming'
 import Container from 'components/Container'
 import Hero from 'components/Hero'
 import { rhythm } from '../lib/typography'
+import Constants from '../lib/constants'
 
 const Description = styled.p`
   margin-bottom: 10px;
@@ -24,40 +25,44 @@ export default function Index({ data: { site, allMdx } }) {
           padding-bottom: 0;
         `}
       >
-        {allMdx.edges.map(({ node: post }) => (
-          <div
-            key={post.id}
-            css={css`
-              margin-bottom: 40px;
-            `}
-          >
-            <h2
-              css={css({
-                marginBottom: rhythm(0.3),
-                transition: 'all 150ms ease',
-                ':hover': {
-                  color: theme.colors.primary,
-                },
-              })}
+        {allMdx.edges
+          .filter(
+            edge => edge.node.parent.sourceInstanceName === Constants.BLOG,
+          )
+          .map(({ node: post }) => (
+            <div
+              key={post.id}
+              css={css`
+                margin-bottom: 40px;
+              `}
             >
-              <Link
-                to={post.frontmatter.slug}
-                aria-label={`View ${post.frontmatter.title}`}
+              <h2
+                css={css({
+                  marginBottom: rhythm(0.3),
+                  transition: 'all 150ms ease',
+                  ':hover': {
+                    color: theme.colors.primary,
+                  },
+                })}
               >
-                {post.frontmatter.title}
-              </Link>
-            </h2>
-            <Description>
-              {post.excerpt}{' '}
-              <Link
-                to={post.frontmatter.slug}
-                aria-label={`View ${post.frontmatter.title}`}
-              >
-                Read Article →
-              </Link>
-            </Description>
-          </div>
-        ))}
+                <Link
+                  to={`blog/${post.frontmatter.slug}`}
+                  aria-label={`View ${post.frontmatter.title}`}
+                >
+                  {post.frontmatter.title}
+                </Link>
+              </h2>
+              <Description>
+                {post.excerpt}{' '}
+                <Link
+                  to={`blog/${post.frontmatter.slug}`}
+                  aria-label={`View ${post.frontmatter.title}`}
+                >
+                  Read Article →
+                </Link>
+              </Description>
+            </div>
+          ))}
         <Link to="/blog" aria-label="Visit blog page">
           View all articles
         </Link>
