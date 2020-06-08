@@ -13,13 +13,6 @@ export default () => {
       <Link to="/about" activeClassName="active" aria-label="View about page">
         About
       </Link>
-      <Link
-        to="/cantact"
-        activeClassName="active"
-        aria-label="View contact page"
-      >
-        Contact
-      </Link>
 
       <ThemeToggler
         css={{}}
