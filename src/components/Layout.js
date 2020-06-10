@@ -131,13 +131,7 @@ const getGlobalStyles = theme => {
   `
 }
 
-export default ({
-  site,
-  frontmatter = {},
-  children,
-  noFooter,
-  noSubscribeForm,
-}) => {
+export default ({ site, frontmatter = {}, children, noFooter }) => {
   const initializeTheme = () => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') || 'default'
@@ -197,12 +191,7 @@ export default ({
           <MDXProvider components={mdxComponents}>
             <Fragment>{children}</Fragment>
           </MDXProvider>
-          {!noFooter && (
-            <Footer
-              author={site.siteMetadata.author.name}
-              noSubscribeForm={noSubscribeForm}
-            />
-          )}
+          {!noFooter && <Footer author={site.siteMetadata.author.name} />}
         </div>
       </Fragment>
     </ThemeProvider>

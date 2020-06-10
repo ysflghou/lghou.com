@@ -18,6 +18,11 @@ const Header = ({ siteTitle }) => {
         background: none;
         padding: 20px 0;
         background: ${theme.colors.headerBg};
+        background-image: linear-gradient(
+          to right,
+          rgb(33, 57, 190),
+          rgb(142, 63, 182)
+        );
       `}
     >
       <Container noVerticalPadding>

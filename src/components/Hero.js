@@ -2,6 +2,7 @@ import React from 'react'
 import { css } from '@emotion/core'
 import { useTheme } from 'components/Theming'
 import Container from 'components/Container'
+import Header from 'components/Header/index'
 import { rhythm } from '../lib/typography'
 
 const Hero = () => {
@@ -14,6 +15,11 @@ const Hero = () => {
         background: ${theme.colors.primary};
         padding: 20px 0 30px 0;
         display: flex;
+        background-image: linear-gradient(
+          to right,
+          rgb(33, 57, 190),
+          rgb(142, 63, 182)
+        );
       `}
     >
       <Container
