@@ -10,7 +10,7 @@ export const Twitter = ({ url = `${config.twitter}` }) => {
     <Link
       to={url}
       css={css`
-        color: ${theme.colors.text};
+        color: ${theme.colors.white};
         margin-left: 10px;
         :hover {
           color: ${theme.colors.primary};
@@ -41,7 +41,7 @@ export const LinkedIn = ({ url = `${config.linkedin}` }) => {
       to={url}
       css={css`
         margin-left: 10px;
-        color: ${theme.colors.text};
+        color: ${theme.colors.white};
         :hover {
           color: ${theme.colors.primary};
         }
@@ -70,7 +70,7 @@ export const GitHub = ({ url = `${config.github}` }) => {
       to={url}
       css={css`
         margin-left: 10px;
-        color: ${theme.colors.text};
+        color: ${theme.colors.white};
         :hover {
           color: ${theme.colors.primary};
         }

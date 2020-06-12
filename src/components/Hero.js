@@ -1,12 +1,14 @@
 import React from 'react'
 import { css } from '@emotion/core'
-import { useTheme } from 'components/Theming'
-import Container from 'components/Container'
-import Header from 'components/Header/index'
+import { useTheme } from './Theming'
+import Container from './Container'
+import Avatar from './Avatar'
+import { Twitter, GitHub, LinkedIn } from './Social'
 import { rhythm } from '../lib/typography'
 
 const Hero = () => {
   const theme = useTheme()
+  const AvatarSource = require('../../static/images/lghou.jpg')
   return (
     <section
       css={css`
@@ -15,6 +17,8 @@ const Hero = () => {
         background: ${theme.colors.primary};
         padding: 20px 0 30px 0;
         display: flex;
+        align-items: center;
+        justify-content: center;
         background-image: linear-gradient(
           to right,
           rgb(33, 57, 190),
@@ -22,13 +26,23 @@ const Hero = () => {
         );
       `}
     >
+      <Avatar
+        src={AvatarSource}
+        css={css`
+          display: flex;
+          flex-direction: column;
+        `}
+      />
+      <Twitter />
+      <GitHub />
+      <LinkedIn />
       <Container
         css={css`
           display: flex;
           flex-direction: column;
         `}
       >
-        <h1
+        <h2
           css={css`
             color: ${theme.colors.white};
             position: relative;
@@ -38,8 +52,8 @@ const Hero = () => {
             max-width: ${rhythm(15)};
           `}
         >
-          Your blog says the things you want to say.
-        </h1>
+          Your blog says the things you want to say. Indeed
+        </h2>
       </Container>
       <div
         css={css`
