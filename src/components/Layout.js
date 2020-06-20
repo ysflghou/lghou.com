@@ -131,7 +131,13 @@ const getGlobalStyles = theme => {
   `
 }
 
-export default ({ site, frontmatter = {}, children, noFooter }) => {
+export default ({
+  site,
+  frontmatter = {},
+  children,
+  noFooter,
+  isAboutpage,
+}) => {
   const initializeTheme = () => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') || 'default'
@@ -188,6 +194,13 @@ export default ({ site, frontmatter = {}, children, noFooter }) => {
             <noscript>This site runs best with JavaScript enabled.</noscript>
           </Helmet>
           <Header />
+          {isAboutpage && (
+            <div
+              css={css`
+                margin-bottom: 30px;
+              `}
+            ></div>
+          )}
           <MDXProvider components={mdxComponents}>
             <Fragment>{children}</Fragment>
           </MDXProvider>

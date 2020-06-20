@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/core'
 import { bpMaxSM } from '../lib/breakpoints'
-import { Twitter, GitHub } from './Social'
+import { GitHub, LinkedIn } from './Social'
 import Container from './Container'
 
 const Footer = ({ author }) => (
@@ -30,8 +30,8 @@ const Footer = ({ author }) => (
           {author && `${author} \u00A9 ${new Date().getFullYear()}`}
         </div>
         <div>
-          <Twitter />
           <GitHub />
+          <LinkedIn />
         </div>
       </div>
     </Container>

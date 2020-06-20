@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import { css } from '@emotion/core'
 import { useTheme } from './Theming'
 import Container from './Container'
@@ -19,6 +20,7 @@ const Hero = () => {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
         background-image: linear-gradient(
           to right,
           rgb(33, 57, 190),
@@ -26,41 +28,60 @@ const Hero = () => {
         );
       `}
     >
-      <Avatar
-        src={AvatarSource}
+      <Avatar src={AvatarSource} />
+      <div
         css={css`
           display: flex;
-          flex-direction: column;
-        `}
-      />
-      <Twitter />
-      <GitHub />
-      <LinkedIn />
-      <Container
-        css={css`
-          display: flex;
-          flex-direction: column;
+          flex-direction: row;
+          margin-top: 10px;
         `}
       >
+        <Twitter noThemeToggle />
+        <GitHub noThemeToggle />
+        <LinkedIn noThemeToggle />
+      </div>
+      <Container>
         <h2
           css={css`
+            font-family: cursive, sans-serif;
             color: ${theme.colors.white};
             position: relative;
             z-index: 5;
             line-height: 1.5;
-            margin: 0;
+            margin: auto;
             max-width: ${rhythm(15)};
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
           `}
         >
-          Your blog says the things you want to say. Indeed
+          Hi, I am Youssef Lghoumaigui, a junior software engineer from Morroco
+          <Link
+            css={css`
+              border: none;
+              color: ${theme.colors.white};
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 20px;
+              cursor: pointer;
+              :hover {
+                color: ${theme.colors.black};
+                background-color: ${theme.colors.white};
+              }
+            `}
+            to="/about"
+            activeClassName="active"
+            aria-label="View about page"
+          >
+            <span role="img" aria-label="know more">
+              👉
+            </span>
+            Know more
+          </Link>
         </h2>
       </Container>
-      <div
-        css={css`
-          height: 150px;
-          overflow: hidden;
-        `}
-      />
     </section>
   )
 }

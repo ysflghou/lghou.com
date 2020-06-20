@@ -36,7 +36,7 @@ const Header = ({ siteTitle }) => {
         >
           <Link
             to="/"
-            aria-label="go to homepage"
+            aria-label="Go to homepage"
             css={css`
               color: white;
               &:hover {
