@@ -1,20 +1,24 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import SEO from 'components/SEO'
 import { css } from '@emotion/core'
 import Container from 'components/Container'
 import Layout from '../components/Layout'
-import { bpMaxSM } from '../lib/breakpoints'
+import Avatar from '../components/Avatar'
+import { useTheme } from '../components/Theming'
+
+import { Twitter, GitHub, LinkedIn } from '../components/Social'
 
 export default function Post({ data: { site, mdx } }) {
-  const title = mdx.frontmatter.title
-  const banner = mdx.frontmatter.banner
+  const AvatarSource = require('../../static/images/lghou.jpg')
+  const theme = useTheme()
+  console.log(theme.themeName)
 
   return (
-    <Layout site={site} frontmatter={mdx.frontmatter}>
+    <Layout site={site} frontmatter={mdx.frontmatter} isAboutpage>
       <SEO frontmatter={mdx.frontmatter} isBlogPost />
+      <Avatar src={AvatarSource} width="200" height="200" />
       <article
         css={css`
           width: 100%;
@@ -22,33 +26,35 @@ export default function Post({ data: { site, mdx } }) {
         `}
       >
         <Container>
-          <h1
+          <div
+            css={css`
+              text-align: center;
+              padding: 10px;
+            `}
+          >
+            <Twitter />
+            <GitHub />
+            <LinkedIn />
+          </div>
+
+          <h2
             css={css`
               text-align: center;
               margin-bottom: 20px;
             `}
           >
-            {title}
-          </h1>
-          {banner && (
-            <div
-              css={css`
-                padding: 30px;
-                ${bpMaxSM} {
-                  padding: 0;
-                }
-              `}
-            >
-              <Img
-                sizes={banner.childImageSharp.fluid}
-                alt={site.siteMetadata.keywords.join(', ')}
-              />
-            </div>
-          )}
+            Hi, I am Youssef
+          </h2>
           <br />
-          <MDXRenderer>{mdx.body}</MDXRenderer>
+          <MDXRenderer
+            css={css`
+              text-align: center;
+              margin-bottom: 20px;
+            `}
+          >
+            {mdx.body}
+          </MDXRenderer>
         </Container>
-        {/* <SubscribeForm /> */}
       </article>
     </Layout>
   )
@@ -67,13 +73,6 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
-        banner {
-          childImageSharp {
-            fluid(maxWidth: 900) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
-            }
-          }
-        }
         slug
         keywords
       }
