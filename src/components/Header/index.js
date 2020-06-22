@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, StaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import { css } from '@emotion/core'
 import { useTheme } from '../Theming'
 import { bpMaxSM } from '../../lib/breakpoints'
@@ -8,8 +8,9 @@ import Links from './Links'
 
 import Container from '../Container'
 
-const Header = ({ siteTitle }) => {
+const Header = () => {
   const theme = useTheme()
+  const logoSource = require('../../../static/images/mylogo.png')
   return (
     <header
       css={css`
@@ -45,7 +46,19 @@ const Header = ({ siteTitle }) => {
               }
             `}
           >
-            {siteTitle}
+            <img
+              css={css`
+                background-color: white;
+                height: 60px;
+                width: 60px;
+                border: 4px solid #fff;
+                /* -webkit-filter: grayscale(100%);
+                filter: grayscale(100%); */
+                margin: auto;
+              `}
+              src={logoSource}
+              alt="t's me! don't worry you can see me later"
+            />
           </Link>
           <div
             css={css`
@@ -86,21 +99,6 @@ const Header = ({ siteTitle }) => {
   )
 }
 
-const ConnectedHeader = props => (
-  <StaticQuery
-    query={graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
-      <Header siteTitle={data.site.siteMetadata.title} {...props} />
-    )}
-  />
-)
+const ConnectedHeader = props => <Header {...props} />
 
 export default ConnectedHeader
