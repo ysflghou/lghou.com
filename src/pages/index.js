@@ -17,6 +17,56 @@ const Description = styled.p`
 
 export default function Index({ data: { site, allMdx } }) {
   const theme = useTheme()
+  const blogPosts = allMdx.edges.filter(
+    edge => edge.node.parent.sourceInstanceName === Constants.BLOG,
+  )
+  let posts = null
+  let viewAll = null
+  let noPosts = null
+  if (blogPosts.length !== 0) {
+    posts = blogPosts.map(({ node: post }) => (
+      <div
+        key={post.id}
+        css={css`
+          margin-bottom: 40px;
+        `}
+      >
+        <h2
+          css={css`
+          margin-bottom: ${rhythm(0.3)},
+          transition: 'all 150ms ease',
+          ':hover': {
+            color: ${theme.colors.primary},
+          },
+        `}
+        >
+          <Link
+            to={`blog/${post.frontmatter.slug}`}
+            aria-label={`View ${post.frontmatter.title}`}
+          >
+            {post.frontmatter.title}
+          </Link>
+        </h2>
+        <Description>
+          {post.excerpt}{' '}
+          <Link
+            to={`blog/${post.frontmatter.slug}`}
+            aria-label={`View ${post.frontmatter.title}`}
+          >
+            Read Article →
+          </Link>
+        </Description>
+      </div>
+    ))
+    viewAll = (
+      <Link to="/blog" aria-label="Visit blog page">
+        View all articles
+      </Link>
+    )
+  } else {
+    noPosts = <h4>No posts to show !, there are coming soon</h4>
+  }
+
   return (
     <Layout site={site}>
       <Hero />
@@ -25,47 +75,9 @@ export default function Index({ data: { site, allMdx } }) {
           padding-bottom: 0;
         `}
       >
-        {allMdx.edges
-          .filter(
-            edge => edge.node.parent.sourceInstanceName === Constants.BLOG,
-          )
-          .map(({ node: post }) => (
-            <div
-              key={post.id}
-              css={css`
-                margin-bottom: 40px;
-              `}
-            >
-              <h2
-                css={css({
-                  marginBottom: rhythm(0.3),
-                  transition: 'all 150ms ease',
-                  ':hover': {
-                    color: theme.colors.primary,
-                  },
-                })}
-              >
-                <Link
-                  to={`blog/${post.frontmatter.slug}`}
-                  aria-label={`View ${post.frontmatter.title}`}
-                >
-                  {post.frontmatter.title}
-                </Link>
-              </h2>
-              <Description>
-                {post.excerpt}{' '}
-                <Link
-                  to={`blog/${post.frontmatter.slug}`}
-                  aria-label={`View ${post.frontmatter.title}`}
-                >
-                  Read Article →
-                </Link>
-              </Description>
-            </div>
-          ))}
-        <Link to="/blog" aria-label="Visit blog page">
-          View all articles
-        </Link>
+        {posts}
+        {viewAll}
+        {noPosts}
         <hr />
       </Container>
     </Layout>
