@@ -21,11 +21,7 @@ const Hero = () => {
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background-image: linear-gradient(
-          to right,
-          rgb(33, 57, 190),
-          rgb(142, 63, 182)
-        );
+        background-color: ${theme.colors.colorBg};
       `}
     >
       <Avatar src={AvatarSource} />
@@ -44,7 +40,7 @@ const Hero = () => {
         <h2
           css={css`
             font-family: cursive, sans-serif;
-            color: ${theme.colors.white};
+            color: ${theme.colors.text};
             position: relative;
             z-index: 5;
             line-height: 1.5;
@@ -60,16 +56,12 @@ const Hero = () => {
           <Link
             css={css`
               border: none;
-              color: ${theme.colors.white};
+              color: ${theme.colors.text};
               text-align: center;
               text-decoration: none;
               display: inline-block;
               font-size: 20px;
               cursor: pointer;
-              :hover {
-                color: ${theme.colors.black};
-                background-color: ${theme.colors.white};
-              }
             `}
             to="/about"
             activeClassName="active"

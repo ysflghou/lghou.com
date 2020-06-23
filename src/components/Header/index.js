@@ -10,7 +10,7 @@ import Container from '../Container'
 
 const Header = () => {
   const theme = useTheme()
-  const logoSource = require('../../../static/images/mylogo.png')
+  const logoSource = require('../../../static/images/logo.png')
   return (
     <header
       css={css`
@@ -18,12 +18,7 @@ const Header = () => {
         flex-shrink: 0;
         background: none;
         padding: 20px 0;
-        background: ${theme.colors.headerBg};
-        background-image: linear-gradient(
-          to right,
-          rgb(33, 57, 190),
-          rgb(142, 63, 182)
-        );
+        background-color: ${theme.colors.colorBg};
       `}
     >
       <Container noVerticalPadding>
@@ -39,7 +34,7 @@ const Header = () => {
             to="/"
             aria-label="Go to homepage"
             css={css`
-              color: white;
+              color: ${theme.colors.text};
               &:hover {
                 color: white;
                 text-decoration: none;
@@ -48,10 +43,11 @@ const Header = () => {
           >
             <img
               css={css`
+                border-radius: 50%;
                 background-color: white;
-                height: 60px;
-                width: 60px;
-                border: 4px solid #fff;
+                height: 65px;
+                width: 65px;
+                border: 4px solid black;
                 /* -webkit-filter: grayscale(100%);
                 filter: grayscale(100%); */
                 margin: auto;
@@ -68,7 +64,7 @@ const Header = () => {
               align-items: center;
               a {
                 text-decoration: none;
-                color: ${theme.colors.white};
+                color: ${theme.colors.text};
                 margin-left: 16px;
                 margin-right: 16px;
               }

@@ -4,15 +4,13 @@ import { useTheme } from './Theming'
 import { css } from '@emotion/core'
 import config from '../../config/website'
 
-export const Twitter = ({ url = `${config.twitter}`, noThemeToggle }) => {
+export const Twitter = ({ url = `${config.twitter}` }) => {
   const theme = useTheme()
   return (
     <Link
       to={url}
       css={css`
-        color: ${!noThemeToggle && theme.themeName === 'default'
-          ? 'black'
-          : 'white'};
+        color: ${theme.themeName === 'default' ? 'black' : 'white'};
         margin-left: 10px;
         :hover {
           color: ${theme.colors.primary};
@@ -36,15 +34,13 @@ export const Twitter = ({ url = `${config.twitter}`, noThemeToggle }) => {
   )
 }
 
-export const LinkedIn = ({ url = `${config.linkedin}`, noThemeToggle }) => {
+export const LinkedIn = ({ url = `${config.linkedin}` }) => {
   const theme = useTheme()
   return (
     <Link
       to={url}
       css={css`
-        color: ${!noThemeToggle && theme.themeName === 'default'
-          ? 'black'
-          : 'white'};
+        color: ${theme.themeName === 'default' ? 'black' : 'white'};
         margin-left: 10px;
         :hover {
           color: ${theme.colors.primary};
@@ -67,15 +63,13 @@ export const LinkedIn = ({ url = `${config.linkedin}`, noThemeToggle }) => {
   )
 }
 
-export const GitHub = ({ url = `${config.github}`, noThemeToggle }) => {
+export const GitHub = ({ url = `${config.github}` }) => {
   const theme = useTheme()
   return (
     <Link
       to={url}
       css={css`
-        color: ${!noThemeToggle && theme.themeName === 'default'
-          ? 'black'
-          : 'white'};
+        color: ${theme.themeName === 'default' ? 'black' : 'white'};
         margin-left: 10px;
         :hover {
           color: ${theme.colors.primary};

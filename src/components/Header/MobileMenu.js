@@ -10,7 +10,9 @@ const Toggle = ({ children }) => {
   const [isToggledOn, setToggle] = useState(false)
   const toggle = () => setToggle(!isToggledOn)
   const theme = useTheme()
-  const color = theme.colors.white
+  const white = theme.colors.white
+  const black = theme.colors.black
+  const isDefaultMode = theme.themeName === 'default'
 
   return (
     <div
@@ -43,19 +45,21 @@ const Toggle = ({ children }) => {
       >
         <div
           css={css`
-            width: 24px;
+            width: 30px;
             height: 2px;
-            background: ${color};
+            background: ${isDefaultMode ? black : white};
             position: absolute;
-            left: 0;
-            ${isToggledOn ? 'background: transparent' : `background: ${color}`};
+            left: -20px;
+            ${isToggledOn
+              ? 'background: transparent'
+              : `background: ${isDefaultMode ? black : white};`};
             transition: all 250ms cubic-bezier(0.86, 0, 0.07, 1);
             ::before {
               content: '';
               top: -8px;
-              width: 24px;
+              width: 30px;
               height: 2px;
-              background: ${color};
+              background: ${isDefaultMode ? black : white};
               position: absolute;
               left: 0;
               ${isToggledOn
@@ -66,9 +70,9 @@ const Toggle = ({ children }) => {
             ::after {
               top: 8px;
               content: '';
-              width: 24px;
+              width: 30px;
               height: 2px;
-              background: ${color};
+              background: ${isDefaultMode ? black : white};
               position: absolute;
               left: 0;
               ${isToggledOn
@@ -90,7 +94,7 @@ const Toggle = ({ children }) => {
             height: 30vh;
             display: flex;
             align-items: center;
-            background: ${theme.colors.headerBg};
+            background-color: ${theme.colors.colorBg};
           `}
         >
           <Container
@@ -100,9 +104,9 @@ const Toggle = ({ children }) => {
               align-items: center;
               justify-content: space-evenly;
               a {
-                color: white;
+                color: ${theme.colors.text};
                 font-size: 22px;
-                margin: 10px 0;
+                margin: auto;
                 padding: 10px;
                 border-radius: 5px;
                 :hover {
