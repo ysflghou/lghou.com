@@ -87,7 +87,7 @@ const Toggle = ({ children }) => {
             left: 0;
             top: 0;
             width: 100vw;
-            height: 100vh;
+            height: 30vh;
             display: flex;
             align-items: center;
             background: ${theme.colors.headerBg};
