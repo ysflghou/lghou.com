@@ -64,7 +64,7 @@ export default function Index({ data: { site, allMdx } }) {
       </Link>
     )
   } else {
-    noPosts = <h4>No posts to show !, there are coming soon</h4>
+    noPosts = <h4>No posts to show !, they are coming soon</h4>
   }
 
   return (
