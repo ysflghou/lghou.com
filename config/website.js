@@ -24,5 +24,5 @@ module.exports = {
   twitter: 'https://twitter.com/lghoumaigui/',
   twitterHandle: '@lghoumaigui',
   github: 'https://github.com/ysflghou/',
-  linkedin: '',
+  linkedin: 'https://www.linkedin.com/in/lghoumaigui-youssef-a15028148/',
 }
