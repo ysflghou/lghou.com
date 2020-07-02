@@ -52,7 +52,7 @@ const Hero = () => {
             text-align: center;
           `}
         >
-          Hi, I am Youssef Lghoumaigui, a junior software engineer from Morroco
+          Hi, I am Youssef Lghoumaigui, a junior software engineer from Morocco
           <Link
             css={css`
               border: none;
