@@ -4,12 +4,10 @@ import { css } from '@emotion/core'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import Container from 'components/Container'
-import Hero from 'components/Hero'
 
 export default ({ data: { site } }) => {
   return (
-    <Layout site={site} noSubscribeForm>
-      <Hero />
+    <Layout site={site}>
       <Container
         css={css`
           padding-bottom: 0;
