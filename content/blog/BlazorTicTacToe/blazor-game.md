@@ -542,6 +542,8 @@ private void InitState()
 }
 ```
 
+Finally, this is our complete game !
+
 ![New game feature](https://i.imgur.com/GfQKrSu.gif)
 
 # Final words
