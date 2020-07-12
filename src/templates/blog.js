@@ -65,9 +65,16 @@ const Blog = ({
               >
                 <Link
                   aria-label={`View ${post.frontmatter.title} article`}
-                  to={`/${post.fields.slug}`}
+                  to={`blog/${post.fields.slug}`}
                 >
-                  <Img sizes={post.frontmatter.banner.childImageSharp.fluid} />
+                  <Img
+                    css={css`
+                      border-radius: 0.5em;
+                      border: 1px black solid;
+                      overflow: hidden;
+                    `}
+                    sizes={post.frontmatter.banner.childImageSharp.fluid}
+                  />
                 </Link>
               </div>
             )}
@@ -84,7 +91,7 @@ const Blog = ({
                 {post.frontmatter.title}
               </Link>
             </h2>
-            {/* <small>{post.frontmatter.date}</small> */}
+            <small>{post.frontmatter.date}</small>
             <p
               css={css`
                 margin-top: 10px;
@@ -135,7 +142,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          excerpt(pruneLength: 300)
+          excerpt(pruneLength: 150)
           id
           parent {
             ... on File {

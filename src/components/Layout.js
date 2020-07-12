@@ -129,7 +129,7 @@ const getGlobalStyles = theme => {
       }
     }
     .highlight-line {
-      background-color: rgba(201, 167, 255, 0.2);
+      background-color: rgba(227, 240, 228, 0.2);
       margin: 0 -10px;
       padding: 0 5px;
       border-left: 5px solid #69aefc;

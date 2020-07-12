@@ -1,10 +1,9 @@
 import React from 'react'
-import theme from 'prism-react-renderer/themes/oceanicNext'
+import theme from 'prism-react-renderer/themes/vsDark'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 // import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 
 import { css } from '@emotion/core'
-import { minXL } from '../../lib/breakpoints'
 
 const RE = /{([\d,-]+)}/
 

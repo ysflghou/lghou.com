@@ -68,6 +68,11 @@ export default function Post({
               `}
             >
               <Img
+                css={css`
+                  border-radius: 0.5em;
+                  border: 1px black solid;
+                  overflow: hidden;
+                `}
                 sizes={banner.childImageSharp.fluid}
                 alt={site.siteMetadata.keywords.join(', ')}
               />
