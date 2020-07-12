@@ -558,7 +558,7 @@ Here is a live demo of our game along with the source code in github:
 - [Live Demo](https://ysflghou.github.io/BlazorTicTacToe/)
 - [source code](https://github.com/ysflghou/Tic-Tac-Toe)
 
-Please feel free to share your feedback about this article!
+Please, feel free to share your feedback about this article!
 
 # Some resources
 
