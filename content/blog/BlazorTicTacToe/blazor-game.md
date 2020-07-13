@@ -36,7 +36,7 @@ cd TicTacToe
 dotnet run
 ```
 
-Browse to `https://localhost:portNumber`, and congratulations! You’ve just built and run your first Blazor WebAssembly app! you can find your port number in the `TicTacToe/Properties/lanchSetting.json` file, it's often 5000/5001 unless you are using IIS.
+Browse to `https://localhost:portNumber`, and congratulations! You’ve just built and run your first Blazor WebAssembly app! note that you can find your port number in the `TicTacToe/Properties/lanchSetting.json` file, it's often 5000/5001 unless you are using IIS.
 
 ![project first look](./images/app_v1.PNG)
 
@@ -48,7 +48,7 @@ To maximize your Blazor productivity, be sure to install a supported version of 
 
 To start our coding journey we will clean the starter project first:
 
-- Add a gitignore file. If you find trouble creating a .gitignore file for the starter template you can use this command:
+- Add a gitignore file. If you find trouble creating a .gitignore file for the starter template you can execute this command:
 
 ```js
 dotnet new gitignore
@@ -67,7 +67,9 @@ git commit -m "initial commit"
 
 # Create components
 
-All we need for now is to create a board with 9 squares. So, we create a `Square` component and a `Board` component.
+From blazor documentation, _Blazor apps are built using components. A component is a self-contained chunk of user interface (UI), such as a page, dialog, or form. A component includes HTML markup and the processing logic required to inject data or respond to UI events. Components are flexible and lightweight. They can be nested, reused, and shared among projects._
+
+All we need for now is to create a board with 9 squares. So, we create a `Square` and a `Board` components.
 The Square component will look like this
 
 ```tsx
@@ -175,9 +177,9 @@ Let's add a custom `value` to our squares and a click handler method, all in C# 
 </style>
 ```
 
-These values compose the **State** of the squares, we define them in the code section of a component and we can manipulate them by the other component methods or render them in the UI.
+These values compose the **State** of the squares, we define the state in the code section of a component to hold component internal data that can change over time. The change can happen as a response to user action or system event. It is the heart of the component which determines its behavior and how it will render. It can only be accessed or modified inside the component or by the component directly.
 
-And here is the result of this tiny changes we have made:
+And here is the result of these changes we have made:
 
 ![state changes on click](https://i.imgur.com/QWIKEUU.gif)
 
@@ -185,7 +187,7 @@ Now, since we have to determine how the game ends and what is its state in a giv
 
 We will pass the values and the click handler from the Board (the parent component) to the Squares (the child components).
 
-The Square component define some parameters that we can set their values whenever we use them, these are the **Props** in blazor.
+The Square component define some parameters that we can set their values whenever we use them, these are the **Props** in blazor. We can't change their value inside the component receiving them.
 
 ```tsx {3-10}
 // Components/Square.razor
@@ -268,14 +270,14 @@ Let's see how this works:
 
 - The `@key=squareNumber` is used to uniquely identify a component from other components.
 - `value=values[squareNumber]` assign the Props value of the Square component.
-- `ClickHandler="@(() => HandleClick(squareNumber))"/>` define the click handler to be executed if a Square is clicked.
+- `ClickHandler="@(() => HandleClick(squareNumber))"/>` define the click handler to be executed when a Square is clicked.
 
-📝 It's important to use the local variable `squareNumber`, since the HandleClick is not called until the square is clicked, at this time the value of `i` is already equal to `9`.
+📝 It's important to use the local variable `squareNumber`, since the HandleClick is not called until the square is clicked, at this time the value of **_i_** is already equal to **_9_**.
 
 # Add players turns:
 
 Until now we are toggling the value of squares without respecting real turns.
-To do so, we just add a new element `xIsNext` to our state that will change its value after every square click.
+To do so, we just add a new boolean `xIsNext` to our state that will toggle its value on every square click.
 
 ```tsx {3,15,25,29,30,31}
 // Components/Board.razor
@@ -331,7 +333,7 @@ And now turns are functional:
 
 # Declare a winner:
 
-Since the players can take turns, the next step is to be able to determine the game status at every moment so we can declare a winner or a draw if the game when the game is over.
+Since the players can take turns, the next step is to be able to determine the game status at every moment so we can declare a winner or a draw when the game is over.
 
 First, let's add a `Helpers` folder where we will create the `Helper.cs` class that hold a static method to calculate the game status depending on the state of the squares when it's called.
 
@@ -388,9 +390,9 @@ namespace TicTacToe.Helpers
 
 <br/>
 
-📝 Add `@using TicTacToe.Helpers` to the `_Imports.razor` file so we can use it in our Board component.
+📝 Note that we have to add `@using TicTacToe.Helpers` to the `_Imports.razor` file so we can use it in our Board component.
 
-Now we will update the game status to show a win or a draw if it's the case, otherwise swap turns normally.
+Now we will update the game status to show a win or a draw if it's the case, otherwise, keep switching turns normally.
 
 Replace this line of code:
 
@@ -427,7 +429,7 @@ With the following:
 }
 ```
 
-Ok, now everything is awesome, except that we can modify a square if it's already filled, or continue playing even if the game is over, let's fix this by adding some checks in the `HandleClick` method:
+This sounds good, except that we can modify an already filled square, or continue playing even if the game is over, let's fix this by adding some checks in the `HandleClick` method:
 
 ```tsx {29-37}
 // Components/Board.razor
@@ -488,13 +490,13 @@ Ok, now everything is awesome, except that we can modify a square if it's alread
 
 <br/>
 
-This is the state of our game after these changes, yes we can play a complete game now!
+This is the state of our game after these changes, yes we can play a complete game now 😀
 
 ![winning a game](https://i.imgur.com/Oj7Uh4R.gif)
 
 # Wanna play again ?
 
-At this point, our game is doing well, but once it's over we can't play anymore (unless we refresh the page), let's make this happen 💪
+We are almsot there, but once a game is over we can't play anymore (unless we refresh the page), let's play again 💪
 
 First we add a button to start a new game:
 
@@ -517,7 +519,7 @@ button {
 }
 ```
 
-In the `PlayAgainHandler` we will just re-initiliaze the state of the board so we can start another game, and since we already have a state initialization in `OnInitialized()` we perform a small refactoring by extracting a new method `InitState()` and call it in both `PlayAgainHandler()` and `OnInitialized()`:
+In the `PlayAgainHandler` we will just re-initiliaze the state of the board so we can start another game, and since we are already doing so in `OnInitialized()`, we can perform a small refactoring by extracting a new method `InitState()` and call it in both `PlayAgainHandler()` and `OnInitialized()`:
 
 ```tsx
 // Components/Board.razor
@@ -542,7 +544,7 @@ private void InitState()
 }
 ```
 
-Finally, this is our complete game !
+Finally, this is our complete game!
 
 ![New game feature](https://i.imgur.com/GfQKrSu.gif)
 
@@ -558,7 +560,7 @@ Here is a live demo of our game along with the source code in github:
 - [Live Demo](https://ysflghou.github.io/BlazorTicTacToe/)
 - [source code](https://github.com/ysflghou/Tic-Tac-Toe)
 
-Please, feel free to share your feedback about this article!
+I hope you liked this guide. Please, feel free to share your feedback about it!
 
 # Some resources
 
