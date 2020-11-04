@@ -16,18 +16,18 @@ redirects:
 
 ## What is the Fail Fast principle
 
-The Fail Fast principle is simple and easy: stop the current operation whenever an unexpected error occurs. Please note that there are some cases where errors are expected, in this case we can handle the operation differently without the need to stop the application, a good example would be the case of unsuccessful storage read operation where a retrying mecanism makes more since than failure.
+The Fail Fast principle is simple and easy: stop the current operation whenever an unexpected error occurs. Please note that there are some cases where errors are expected, in this case we can handle the operation differently without the need to stop the application, a good example would be the case of unsuccessful storage read operation where a retrying mechanism makes more since than failure.
 
 You can think that failing fast can make the application fragile, but the more you catch errors early, the least it costs you to fix them, and the more your application becomes robust.
 
 ## Why adhere to the Fail Fast principle
 
-At first, it's hard to adhere to the Fail Fast principle when you see the plenty of scenarios that lead to errors and thus can stop the application, but when you fail silently and hide the errors, you are just pretending that everthing is OK nevertheless it's not.
+At first, it's hard to adhere to the Fail Fast principle when you see the plenty of scenarios that lead to errors and thus can stop the application, but when you fail silently and hide the errors, you are just pretending that everything is OK nevertheless it's not.
 Here are some of the benefits of the Fail Fast principle:
 
-- **No hidden exceptions**. If you fail silently, your program continue with hidden exceptions that can appear in a later stage of its execution, which make it hard to spot the source of the problem or change its behavior. The Fail fast can make debbuging easy.
+- **No hidden exceptions**. If you fail silently, your program continue with hidden exceptions that can appear in a later stage of its execution, which make it hard to spot the source of the problem or change its behavior. The Fail fast can make debugging easy.
 - **Short feedback loop**. A lot of bugs can be fixed in development phase if we stick to the fail fast principle, and even if it gets to the production, once a problem is spotted by end users , they will have a clear understanding of the error, and, in turns, you can fix it quickly, giving the fact that you raise the right exception in the right place.
-- **Consistent and powerfull applications**. You are aware of the behavior of your program, and you can prevent worse consequences after failing silently like deadlocks, crashes long after the original bug, data loss and corruption, and data inconsistency.
+- **Consistent and powerful applications**. You are aware of the behavior of your program, and you can prevent worse consequences after failing silently like deadlocks, crashes long after the original bug, data loss and corruption, and data inconsistency.
 
 Note that, this is not valid for some critical applications where it's better to fail safe and react appropriately, or when having some stateless server that process requests independently and can continue working even if it fails to handle a request.
 
@@ -36,7 +36,7 @@ Note that, this is not valid for some critical applications where it's better to
 Beside what's in the code, the Fail Fast principle figures also in many agile practices.
 
 - **Test-driven development**. You don't have to stick to the TDD as it is, but always keep in mind that you have to take all scenarios that you can figure into consideration when implementing your logic.
-- **Continuous integration**. An Agile practice in software development, where you can integrate your development in a shared repository and run some tests and quick sanity checks to validate your changes, and run your code against different environments where you can validate that your infrastructure is OK (environment variables, configuration files, files access, ...).
+- **Continuous integration**. An Agile practice in software development, where you can integrate your development in a shared repository and run some tests and quick sanity checks to validate your changes, and run your code against different environments where you can validate that your infrastructure is OK (environment variables, configuration files, files access, …).
 - **Fail Fast in code**. The most important rule for better code is to never hide exceptions, the challenge is how to handle them. First, don't mix up handling and throwing the exceptions in the same time, and second, choose wisely when to catch your exceptions; in the highest level where you handle them directly before they are thrown directly to the user, or in the lowest level where you are interacting with some native or external code and you want to perform some actions like retrying or triggering other actions, but not in the middle.
 
 ## Example
