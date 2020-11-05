@@ -64,9 +64,9 @@ public string GetRetryNumberProperty(ServiceConfiguration configuration)
 }
 
 ServiceConfiguration configuration = new ServiceConfiguration();
-string retryNumber = GetRetryNumberProperty(configuration);
+string retryNumberProperty = GetRetryNumberProperty(configuration);
 
-// use the retryNumber here
+// use the retryNumberProperty here
 
 ```
 
@@ -96,15 +96,17 @@ public string GetRetryNumberProperty(ServiceConfiguration configuration)
 }
 
 ServiceConfiguration configuration = new ServiceConfiguration();
-string retryNumber = GetRetryNumberProperty(configuration);
+string retryNumberProperty = GetRetryNumberProperty(configuration);
 
-// use the retryNumber here
+// use the retryNumberProperty here
 
 ```
 
 <br/>
 
 With this implementation, we can spot and correct a problem related to the configuration reading and control the value used for the retry but in the first implementation we can spend days trying to figure out a problem showing far away from where we hid it.
+
+**_Thank you for reading, I hope you like it. Your feedback is much appreciated !_**
 
 ## Resources
 
