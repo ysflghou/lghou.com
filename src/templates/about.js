@@ -6,14 +6,14 @@ import { css } from '@emotion/core'
 import Container from 'components/Container'
 import Layout from '../components/Layout'
 import Avatar from '../components/Avatar'
-import { useTheme } from '../components/Theming'
+// import { useTheme } from '../components/Theming'
 
 import { Twitter, GitHub, LinkedIn } from '../components/Social'
 
 export default function Post({ data: { site, mdx } }) {
   const AvatarSource = require('../../static/images/lghou.jpg')
-  const theme = useTheme()
-  console.log(theme.themeName)
+  // const theme = useTheme()
+  // console.log(theme.themeName)
 
   return (
     <Layout site={site} frontmatter={mdx.frontmatter} isAboutpage>
