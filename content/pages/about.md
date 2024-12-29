@@ -8,4 +8,4 @@ published: true
 
 Happy to have your here 😅
 
-Currently, I am a remote software engineer Freelancer focusing on backend technologies.
+Currently, I am a remote software engineer Freelancer.
